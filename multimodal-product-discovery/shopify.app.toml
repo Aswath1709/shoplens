@@ -1,0 +1,36 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "a1414f594adaa6e69e963d20207a1aac"
+name = "multimodal-product-discovery"
+handle = "multimodal-product-discovery"
+application_url = "https://passing-maybe-oven-architect.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2025-04"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "products/create" ]
+  uri = "https://2fb9b6c8bc85.ngrok-free.app/product-webhook/"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,write_products"
+
+[auth]
+redirect_urls = ["https://passing-maybe-oven-architect.trycloudflare.com/auth/callback", "https://passing-maybe-oven-architect.trycloudflare.com/auth/shopify/callback", "https://passing-maybe-oven-architect.trycloudflare.com/api/auth/callback"]
+
+[pos]
+embedded = false
